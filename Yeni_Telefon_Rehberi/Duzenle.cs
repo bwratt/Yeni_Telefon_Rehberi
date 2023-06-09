@@ -29,29 +29,29 @@ namespace Yeni_Telefon_Rehberi
 
         public void DataGridViewiGuncelle()
         {
-            // DataGridView'i temizle
-            Form1 form1 = new Form1();
-           form1.dataGridView1.Rows.Clear();
+            // DataGridView'in veri kaynağını temizle
+            Form1 form1 = Application.OpenForms["Form1"] as Form1; // Form1'e erişim
+            form1.dataGridView1.DataSource = null;
+            form1.dataGridView1.Rows.Clear();
 
             // Veritabanından verileri al ve DataGridView'e ekle
             bag.Open();
             komut.Connection = bag;
             komut.CommandText = "SELECT * FROM Kisiler";
-            OleDbDataReader reader = komut.ExecuteReader();
-            while (reader.Read())
-            {
-                string kisiID = reader["KisiID"].ToString();
-                string isim = reader["Isim"].ToString();
-                string soyisim = reader["Soyisim"].ToString();
-                string telefon = reader["Telefon"].ToString();
-                string adres = reader["Adres"].ToString();
-
-                form1.dataGridView1.Rows.Add(kisiID, isim, soyisim, telefon, adres);
-            }
-            reader.Close();
+            OleDbDataAdapter adapter = new OleDbDataAdapter(komut);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            form1.dataGridView1.DataSource = dataTable;
             bag.Close();
         }
 
+        private void teltxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         public void button3_Click(object sender, EventArgs e)
         {
@@ -93,9 +93,7 @@ namespace Yeni_Telefon_Rehberi
                             komut.ExecuteNonQuery();
                             MessageBox.Show("Kişi Güncellendi!");
                             bag.Close();
-
                             
-
                             // Form3'ü kapatın
                             this.Close();
                         }
@@ -118,6 +116,34 @@ namespace Yeni_Telefon_Rehberi
             soyisimtxt.Text = soyisim;
             teltxt.Text = telefon;
             adrestxt.Text = adres;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = Application.OpenForms["Form1"] as Form1;
+            DialogResult onay;
+            onay = MessageBox.Show("Bu kişiyi silmek istediğinize emin misiniz?", "DİKKAT", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (onay == DialogResult.Yes)
+            {
+                // Seçili kişinin telefon numarasını alın
+                string seciliTelefon = form1. dataGridView1.SelectedRows[0].Cells["Telefon"].Value.ToString();
+
+                // Veritabanından kişiyi sil
+                bag.Open();
+                komut.Connection = bag;
+                komut.CommandText = "DELETE FROM Kisiler WHERE Telefon = @Telefon";
+                komut.Parameters.AddWithValue("@Telefon", seciliTelefon);
+                komut.ExecuteNonQuery();
+                bag.Close();
+
+                MessageBox.Show("Kişi silindi!");
+
+                // DataGridView'i güncelle
+                
+                DataGridViewiGuncelle();
+
+                this.Close();
+            }
         }
     }
 }

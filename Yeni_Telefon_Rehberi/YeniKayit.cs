@@ -26,7 +26,7 @@ namespace Yeni_Telefon_Rehberi
         public void DataGridViewiGuncelle()
         {
             // DataGridView'in veri kaynağını temizle
-            Form1 form1 = new Form1();
+            Form1 form1 = Application.OpenForms["Form1"] as Form1; // Form1'e erişim
             form1.dataGridView1.DataSource = null;
             form1.dataGridView1.Rows.Clear();
 
@@ -40,7 +40,13 @@ namespace Yeni_Telefon_Rehberi
             form1.dataGridView1.DataSource = dataTable;
             bag.Close();
         }
-
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -76,11 +82,9 @@ namespace Yeni_Telefon_Rehberi
                         yeniteltxt.Text = "";
                         yeniadrestxt.Text = "";
                         
-
                         this.Close();
 
                         DataGridViewiGuncelle();
-
                     }
 
                 }
@@ -92,6 +96,46 @@ namespace Yeni_Telefon_Rehberi
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yeniadrestxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yenisoytxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yeniisimtxt_TextChanged(object sender, EventArgs e)
         {
 
         }

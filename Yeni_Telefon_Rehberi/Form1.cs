@@ -24,8 +24,6 @@ namespace Yeni_Telefon_Rehberi
 
         DataTable veritablosu = new DataTable();
 
-        
-
         public void listele()
         {
             try
@@ -34,19 +32,15 @@ namespace Yeni_Telefon_Rehberi
                 OleDbDataAdapter siringa = new OleDbDataAdapter("select * from Kisiler", bag);
                 siringa.Fill(veritablosu);
                 dataGridView1.DataSource = veritablosu;
-
             }
             catch (Exception hata)
             {
                 MessageBox.Show(hata.ToString());
-
             }
         }
 
         public void button3_Click(object sender, EventArgs e)
         {
-            
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
@@ -54,8 +48,8 @@ namespace Yeni_Telefon_Rehberi
                 string soyisim = selectedRow.Cells["Soyisim"].Value.ToString(); // "Soyisim" burada DataGridView'deki soyisim sütununun adını temsil etmektedir
                 string telefon = selectedRow.Cells["Telefon"].Value.ToString(); // "Telefon" burada DataGridView'deki telefon sütununun adını temsil etmektedir
                 string adres = selectedRow.Cells["Adres"].Value.ToString(); // "Adres" burada DataGridView'deki adres sütununun adını temsil etmektedir
-                
-                
+
+
                 Form1 form1 = new Form1();
                 // İkinci formu açmak ve verileri aktarmak için aşağıdaki gibi bir kod kullanabilirsiniz:
                 Duzenle ikinciForm = new Duzenle(form1);
@@ -135,9 +129,10 @@ namespace Yeni_Telefon_Rehberi
                 else
                 {
                     dataGridView1.ClearSelection();
+                    dataGridView1.CurrentCell = selectedRow.Cells[0];
                     selectedRow.Selected = true;
                 }
             }
-        }
+            }
     }
 }
