@@ -58,7 +58,25 @@ namespace Yeni_Telefon_Rehberi
         private void Form1_Load(object sender, EventArgs e)
         {
             listele();
-            
+            dataGridView1.ClearSelection();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            button3.Visible = false;
+
+            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
+
+        }
+
+        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                button3.Visible = true; // Butonu göster
+            }
+            else
+            {
+                button3.Visible = false; // Butonu gizle
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -70,6 +88,37 @@ namespace Yeni_Telefon_Rehberi
         {
             YeniKayit YeniKayit = new YeniKayit();
             YeniKayit.Show();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                button1.Visible = true; // Butonu göster
+            }
+            else
+            {
+                button1.Visible = false; // Butonu gizle
+            }
+        }
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+
+                if (selectedRow.Selected)
+                {
+                    dataGridView1.ClearSelection();
+                }
+                else
+                {
+                    dataGridView1.ClearSelection();
+                    selectedRow.Selected = true;
+                }
+            }
         }
     }
 }
