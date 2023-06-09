@@ -32,7 +32,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.aratxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -90,12 +90,12 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // aratxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 20);
-            this.textBox1.TabIndex = 42;
+            this.aratxt.Location = new System.Drawing.Point(91, 25);
+            this.aratxt.Name = "aratxt";
+            this.aratxt.Size = new System.Drawing.Size(227, 20);
+            this.aratxt.TabIndex = 42;
             // 
             // label1
             // 
@@ -136,7 +136,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.aratxt);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Telefon Rehberi";
@@ -153,9 +153,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox aratxt;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using Yeni_Telefon_Rehberi;
 
 namespace Yeni_Telefon_Rehberi
 {
@@ -23,6 +24,8 @@ namespace Yeni_Telefon_Rehberi
 
         DataTable veritablosu = new DataTable();
 
+        
+
         public void listele()
         {
             try
@@ -32,7 +35,6 @@ namespace Yeni_Telefon_Rehberi
                 siringa.Fill(veritablosu);
                 dataGridView1.DataSource = veritablosu;
 
-
             }
             catch (Exception hata)
             {
@@ -41,16 +43,32 @@ namespace Yeni_Telefon_Rehberi
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public void button3_Click(object sender, EventArgs e)
         {
+            
 
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                string isim = selectedRow.Cells["Isim"].Value.ToString(); // "Isim" burada DataGridView'deki isim sütununun adını temsil etmektedir
+                string soyisim = selectedRow.Cells["Soyisim"].Value.ToString(); // "Soyisim" burada DataGridView'deki soyisim sütununun adını temsil etmektedir
+                string telefon = selectedRow.Cells["Telefon"].Value.ToString(); // "Telefon" burada DataGridView'deki telefon sütununun adını temsil etmektedir
+                string adres = selectedRow.Cells["Adres"].Value.ToString(); // "Adres" burada DataGridView'deki adres sütununun adını temsil etmektedir
+                
+                
+                Form1 form1 = new Form1();
+                // İkinci formu açmak ve verileri aktarmak için aşağıdaki gibi bir kod kullanabilirsiniz:
+                Duzenle ikinciForm = new Duzenle(form1);
+                ikinciForm.SetVeriler(isim, soyisim, telefon, adres);
+                ikinciForm.ShowDialog();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             veritablosu.Clear();
 
-            OleDbDataAdapter siringa = new OleDbDataAdapter("select * from Kisiler where Isim like '" + textBox1.Text + "%'", bag);
+            OleDbDataAdapter siringa = new OleDbDataAdapter("select * from Kisiler where Isim like '" + aratxt.Text + "%'", bag);
             siringa.Fill(veritablosu);
             dataGridView1.DataSource = veritablosu;
         }
@@ -100,6 +118,7 @@ namespace Yeni_Telefon_Rehberi
             {
                 button1.Visible = false; // Butonu gizle
             }
+
         }
 
 

@@ -23,6 +23,25 @@ namespace Yeni_Telefon_Rehberi
 
         DataTable veritablosu = new DataTable();
 
+        public void DataGridViewiGuncelle()
+        {
+            // DataGridView'in veri kaynağını temizle
+            Form1 form1 = new Form1();
+            form1.dataGridView1.DataSource = null;
+            form1.dataGridView1.Rows.Clear();
+
+            // Veritabanından verileri al ve DataGridView'e ekle
+            bag.Open();
+            komut.Connection = bag;
+            komut.CommandText = "SELECT * FROM Kisiler";
+            OleDbDataAdapter adapter = new OleDbDataAdapter(komut);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            form1.dataGridView1.DataSource = dataTable;
+            bag.Close();
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -34,12 +53,12 @@ namespace Yeni_Telefon_Rehberi
                     string isim, soyisim, telefon, adres;
 
 
-                    isim = textBox2.Text;
-                    soyisim = textBox3.Text;
-                    telefon = textBox4.Text;
-                    adres = textBox5.Text;
+                    isim = yeniisimtxt.Text;
+                    soyisim = yenisoytxt.Text;
+                    telefon = yeniteltxt.Text;
+                    adres = yeniadrestxt.Text;
 
-                    if (textBox4.Text.Length < 10)
+                    if (yeniteltxt.Text.Length < 10)
                     {
                         MessageBox.Show("Telefon numarası 10 haneli olmalı ve 0'la başlamamalı", "HATA", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
@@ -52,22 +71,29 @@ namespace Yeni_Telefon_Rehberi
                         MessageBox.Show("Kişi Kayıt Edildi!");
                         bag.Close();
 
-                        textBox2.Text = "";
-                        textBox3.Text = "";
-                        textBox4.Text = "";
-                        textBox5.Text = "";
+                        yeniisimtxt.Text = "";
+                        yenisoytxt.Text = "";
+                        yeniteltxt.Text = "";
+                        yeniadrestxt.Text = "";
+                        
 
                         this.Close();
-                        
+
+                        DataGridViewiGuncelle();
+
                     }
-                
+
                 }
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Tekrar Deneyiniz.");
             }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
