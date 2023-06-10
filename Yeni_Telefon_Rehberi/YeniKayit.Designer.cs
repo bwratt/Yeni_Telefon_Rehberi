@@ -63,6 +63,7 @@
             this.yeniisimtxt.Size = new System.Drawing.Size(169, 20);
             this.yeniisimtxt.TabIndex = 40;
             this.yeniisimtxt.TextChanged += new System.EventHandler(this.yeniisimtxt_TextChanged);
+            this.yeniisimtxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yeniisimtxt_KeyPress);
             // 
             // yenisoytxt
             // 
@@ -71,6 +72,7 @@
             this.yenisoytxt.Size = new System.Drawing.Size(169, 20);
             this.yenisoytxt.TabIndex = 42;
             this.yenisoytxt.TextChanged += new System.EventHandler(this.yenisoytxt_TextChanged);
+            this.yenisoytxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yenisoytxt_KeyPress);
             // 
             // yeniteltxt
             // 
@@ -79,6 +81,7 @@
             this.yeniteltxt.Size = new System.Drawing.Size(169, 20);
             this.yeniteltxt.TabIndex = 44;
             this.yeniteltxt.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.yeniteltxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.yeniteltxt_KeyPress);
             // 
             // label8
             // 

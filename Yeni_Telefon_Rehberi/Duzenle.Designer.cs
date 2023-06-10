@@ -69,6 +69,7 @@
             this.teltxt.Name = "teltxt";
             this.teltxt.Size = new System.Drawing.Size(169, 20);
             this.teltxt.TabIndex = 52;
+            this.teltxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.teltxt_KeyPress_1);
             // 
             // label4
             // 
@@ -87,6 +88,7 @@
             this.soyisimtxt.Name = "soyisimtxt";
             this.soyisimtxt.Size = new System.Drawing.Size(169, 20);
             this.soyisimtxt.TabIndex = 50;
+            this.soyisimtxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.soyisimtxt_KeyPress);
             // 
             // label3
             // 
@@ -105,6 +107,7 @@
             this.isimtxt.Name = "isimtxt";
             this.isimtxt.Size = new System.Drawing.Size(169, 20);
             this.isimtxt.TabIndex = 48;
+            this.isimtxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.isimtxt_KeyPress);
             // 
             // label2
             // 

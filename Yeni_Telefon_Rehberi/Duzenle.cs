@@ -47,10 +47,7 @@ namespace Yeni_Telefon_Rehberi
 
         private void teltxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            
         }
 
         public void button3_Click(object sender, EventArgs e)
@@ -143,6 +140,37 @@ namespace Yeni_Telefon_Rehberi
                 DataGridViewiGuncelle();
 
                 this.Close();
+            }
+        }
+
+        private void teltxt_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // En fazla 10 karaktere izin ver
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void isimtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void soyisimtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
